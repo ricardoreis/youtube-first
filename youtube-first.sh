@@ -1,4 +1,5 @@
 #!/bin/bash
+export DISPLAY=:0
 echo
 echo "ACESSANDO O YOUTUBE"
 echo "-------------------"
@@ -37,11 +38,15 @@ else
   echo "Já comentado."
   echo $data $ultimo_video "Já comentado" >> /home/ricardo/youtube-first/log
  else
+#  website=`echo $ultimo_video | cut -d '"' -f 2`
+#  x-www-browser $website
   echo "Novo vídeo, você precisa comentar agora."
   echo $data $ultimo_video "Comentar agora" >> /home/ricardo/youtube-first/log
   echo $ultimo_video >> /home/ricardo/youtube-first/videos_comentados.txt
   echo $data "videos_comentados.txt atualizado com $ultimo_video" >> /home/ricardo/youtube-first/log
   /home/ricardo/youtube-first/espeak-video-novo.sh
+  website=`echo $ultimo_video | cut -d '"' -f 2`
+  x-www-browser $website
  fi
 
 fi
